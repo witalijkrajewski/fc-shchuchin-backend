@@ -8,7 +8,7 @@ from . import utils
 class Team(models.Model):
     name = models.CharField('Team Name', max_length=255)
     location = models.CharField('Team Location', max_length=255)
-    description = models.CharField('Team Description', max_length=255)
+    description = models.TextField('Team Description')
     slug = models.SlugField('Team Slug', max_length=255)
 
     image = models.ImageField('Team Image', upload_to='Team Images/%Y/%m/%d', blank=True, null=True)
@@ -69,6 +69,9 @@ class Player(models.Model):
     matches = models.IntegerField()
     goals = models.IntegerField()
     assists = models.IntegerField()
+    yellow_cards = models.IntegerField()
+    red_cards = models.IntegerField()
+    status = models.CharField('Player Status', max_length=255, default='Available')
 
     image = models.ImageField('Player Image', upload_to='Players Images/%Y/%m/%d', null=True, blank=True)
     thumbnail = models.ImageField('Player Thumbnail', upload_to='Players Thumbnails/%Y/%m/%d', null=True, blank=True)
