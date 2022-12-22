@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres
+    ports: #add line.
+      - '5432:5432'
+    environment: # add line.
+      - POSTGRES_DB=FCS_db
+      - POSTGRES_USER=FCS_user
+      - POSTGRES_PASSWORD=FCS_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: fcs-pgadmin #you can change this
+    depends_on:
+      - db
+    ports:
+      - "5051:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: fcs@mail.com
+      PGADMIN_DEFAULT_PASSWORD: fcs_password
+    restart: always
+
+  web:
+    build: ./backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend/:/usr/src/backend/
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - db
+
+
+volumes:
+  postgres_data:
