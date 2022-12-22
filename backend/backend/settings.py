@@ -44,6 +44,8 @@ INSTALLED_APPS = [
 
     'corsheaders',
     'djoser',
+
+    'main.apps.MainConfig',
 ]
 
 CORS_ALLOWED_ORIGINS = [
