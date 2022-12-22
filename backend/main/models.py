@@ -26,7 +26,12 @@ class Team(models.Model):
     def get_absolute_url(self):
         return f'/{self.slug}/'
 
-    def get_player_thumbnail(self):
+    def get_team_image(self):
+        if self.image:
+            return 'http://127.0.0.1:8000' + self.image.url
+        return ''
+
+    def get_team_thumbnail(self):
         if self.thumbnail:
             return 'http://127.0.0.1:8000' + self.thumbnail.url
 
