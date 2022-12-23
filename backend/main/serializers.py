@@ -10,6 +10,7 @@ class PlayerSerializer(serializers.ModelSerializer):
             'id',
             'get_player_full_name',
             'get_player_age',
+            'get_player_team',
             'position',
             'matches',
             'goals',

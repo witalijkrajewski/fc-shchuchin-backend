@@ -63,7 +63,7 @@ class Player(models.Model):
     last_name = models.CharField('Player Last Name', max_length=255)
     patronymic = models.CharField('Player Patronymic', max_length=255)
 
-    birthday = models.DateTimeField()
+    birthday = models.CharField(max_length=10, default='DD.MM.YYYY')
 
     position = models.CharField('Player Position', max_length=255)
 
@@ -96,6 +96,9 @@ class Player(models.Model):
 
     def get_absolute_url(self):
         return f'/{self.team.slug}/{self.slug}/'
+
+    def get_player_team(self):
+        return f'{self.team.name}'
 
     def get_player_image(self):
         if self.image:
