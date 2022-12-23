@@ -15,6 +15,8 @@ class PlayerSerializer(serializers.ModelSerializer):
             'matches',
             'goals',
             'assists',
+            'yellow_cards',
+            'red_cards',
             'get_player_image',
             'get_player_thumbnail',
             'get_absolute_url',
