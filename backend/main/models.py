@@ -36,8 +36,8 @@ class Team(models.Model):
         if self.thumbnail:
             return 'http://127.0.0.1:8000' + self.thumbnail.url
 
-        if self.image1:
-            self.thumbnail = self.make_thumbnail(self.image1)
+        if self.image:
+            self.thumbnail = self.make_thumbnail(self.image)
             self.save()
 
             return 'http://127.0.0.1:8000' + self.thumbnail.url
@@ -106,8 +106,8 @@ class Player(models.Model):
         if self.thumbnail:
             return 'http://127.0.0.1:8000' + self.thumbnail.url
 
-        if self.image1:
-            self.thumbnail = self.make_thumbnail(self.image1)
+        if self.image:
+            self.thumbnail = self.make_thumbnail(self.image)
             self.save()
 
             return 'http://127.0.0.1:8000' + self.thumbnail.url
