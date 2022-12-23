@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'djoser',
 
     'main.apps.MainConfig',
+    'blog.apps.BlogConfig',
 ]
 
 CORS_ALLOWED_ORIGINS = [
