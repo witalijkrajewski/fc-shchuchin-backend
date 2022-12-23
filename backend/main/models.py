@@ -3,6 +3,7 @@ from PIL import Image
 from io import BytesIO
 from django.db import models
 from . import utils
+from .constants import PLAYER_STATUS_CHOICES
 
 
 class Team(models.Model):
@@ -71,7 +72,7 @@ class Player(models.Model):
     assists = models.IntegerField()
     yellow_cards = models.IntegerField()
     red_cards = models.IntegerField()
-    status = models.CharField('Player Status', max_length=255, default='Available')
+    status = models.CharField('Player Status', max_length=255, default='Available', choices=PLAYER_STATUS_CHOICES)
 
     image = models.ImageField('Player Image', upload_to='Players Images/%Y/%m/%d', null=True, blank=True)
     thumbnail = models.ImageField('Player Thumbnail', upload_to='Players Thumbnails/%Y/%m/%d', null=True, blank=True)
