@@ -2,10 +2,11 @@ from django.core.files import File
 from PIL import Image
 from io import BytesIO
 from django.db import models
+from .constants import MAIN_THEME_CHOICES
 
 
 class BlogMainTheme(models.Model):
-    main_theme = models.CharField(choices='', max_length=255)
+    main_theme = models.CharField(choices=MAIN_THEME_CHOICES, max_length=255)
     slug = models.SlugField(max_length=255)
 
     class Meta:
@@ -26,6 +27,8 @@ class Blog(models.Model):
     blog_image = models.ImageField(upload_to='Blog Images/%Y/%m/%d', blank=True, null=True)
     blog_thumbnail = models.ImageField(upload_to='Blog Thumbnails/%Y/%m/%d', blank=True, null=True)
 
+    slug = models.SlugField(max_length=255)
+
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
 
@@ -34,6 +37,9 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return f'/{self.theme.slug}/{self.slug}/'
 
     def get_blog_image(self):
         if self.blog_image:

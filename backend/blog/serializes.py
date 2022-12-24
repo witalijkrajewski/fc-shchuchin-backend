@@ -14,6 +14,7 @@ class BlogSerializer(serializers.ModelSerializer):
             'get_blog_image',
             'get_blog_thumbnail',
             'date_created',
+            'get_absolute_url',
         )
 
 
